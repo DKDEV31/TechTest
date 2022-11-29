@@ -1,0 +1,9 @@
+<div class="todo-container">
+  <mat-checkbox [checked]="todo.state" (change)="onChange()"></mat-checkbox>
+  <div>
+    <h3 [ngClass]="{'strike': todo.state === true}">{{todo.title}}</h3>
+    <p [ngClass]="{'strike': todo.state === true}">{{todo.description}}</p>
+  </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+.todo-container{
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  margin-bottom: 10px;
+  div{
+    cursor: pointer;
+    h3{
+      margin:0;
+    }
+    p{
+      margin:0;
+      font-weight: lighter;
+      max-width: 73%;
+      word-break: break-word;
+    }
+  }
+  &:first-child{
+    margin-top: 10px;
+  }
+  &:last-child{
+    margin-bottom: 0;
+  }
+}
+.strike{
+  text-decoration: line-through;
+}
