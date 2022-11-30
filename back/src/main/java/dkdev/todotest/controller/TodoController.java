@@ -4,11 +4,9 @@ import dkdev.todotest.Exception.DAOException;
 import dkdev.todotest.entity.Todo;
 import dkdev.todotest.services.TodoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 public class TodoController {
     private final TodoService todoService;
@@ -17,8 +15,18 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @GetMapping("/todos")
-    public ResponseEntity<List<Todo>> getAllTodos() throws DAOException {
+    @GetMapping(value = "/todos", produces = "application/json")
+    public ResponseEntity<List<Todo>> getAllTodos() {
         return ResponseEntity.ok(todoService.listAllTodos());
+    }
+
+    @PatchMapping(value = "/todos/state/{id}", produces = "application/json")
+    public ResponseEntity<Todo> updateTodoState(@PathVariable Long id) throws DAOException {
+        return ResponseEntity.ok(todoService.updateTodoState(id));
+    }
+
+    @GetMapping(value = "/todos/{id}", produces = "application/json")
+    public ResponseEntity<Todo> getOneTodoById(@PathVariable Long id) throws DAOException {
+        return ResponseEntity.ok(todoService.getOneTodoById(id));
     }
 }

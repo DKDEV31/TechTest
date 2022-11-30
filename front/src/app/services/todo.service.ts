@@ -17,4 +17,8 @@ export class TodoService {
   getTodos(): Observable<Todo[]>{
     return this.http.get<Todo[]>(this.apiUrl);
   }
+
+  updateTodoState(id:number): Observable<Todo>{
+    return this.http.patch<Todo>(this.apiUrl+"/state/"+id, null)
+  }
 }

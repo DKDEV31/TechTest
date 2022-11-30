@@ -21,7 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [
     AppComponent,
     TodolistComponent,
-    TodoComponent
+    TodoComponent,
   ],
   imports: [
     BrowserModule,

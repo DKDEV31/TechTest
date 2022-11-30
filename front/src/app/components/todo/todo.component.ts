@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Todo} from "../../models/Todo";
 
 @Component({
@@ -10,9 +10,13 @@ export class TodoComponent {
 
   @Input() todo!:Todo;
 
+  @Output() todoUpdatedState = new EventEmitter<Todo>()
+
   onChange(){
     this.todo.state = !this.todo.state
-    console.log("change")
+    this.todoUpdatedState.emit({
+      ...this.todo
+    })
   }
 
 }

@@ -17,11 +17,17 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public List<Todo> listAllTodos() throws DAOException {
-        try{
+    public List<Todo> listAllTodos() {
             return todoRepository.findAll();
-        } catch (Exception e) {
-            throw new DAOException(e.getMessage());
-        }
+    }
+
+    public Todo updateTodoState(Long id) throws DAOException {
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new DAOException("Todo not found please give a valid id"));
+        todo.setState(!todo.getState());
+        return todoRepository.save(todo);
+    }
+
+    public Todo getOneTodoById(Long id) throws DAOException {
+        return todoRepository.findById(id).orElseThrow(() -> new DAOException("Todo not found please give a valid id"));
     }
 }

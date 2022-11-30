@@ -1,0 +1,12 @@
+.card-wrapper{
+  width: 70%;
+}
+.card-header-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  h2{
+    margin: 0;
+  }
+}

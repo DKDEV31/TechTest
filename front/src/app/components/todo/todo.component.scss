@@ -3,16 +3,18 @@
   align-items: center;
   padding: 6px;
   margin-bottom: 10px;
-  div{
+  .content-wrapper{
     cursor: pointer;
-    h3{
-      margin:0;
-    }
-    p{
-      margin:0;
-      font-weight: lighter;
-      max-width: 73%;
-      word-break: break-word;
+    div{
+      h3{
+        margin:0;
+      }
+      p{
+        margin:0;
+        font-weight: lighter;
+        max-width: 73%;
+        word-break: break-word;
+      }
     }
   }
   &:first-child{

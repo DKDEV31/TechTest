@@ -17,6 +17,11 @@ export class TodolistComponent implements OnInit{
     this.fetchTodos()
   }
 
+  updateTodoState(todo:Todo):void{
+    console.log(todo)
+    this.todoService.updateTodoState(todo.id!).subscribe(() => this.todoService.getTodos().subscribe(todos => this.todos = todos))
+  }
+
   fetchTodos():void{
     this.todoService.getTodos().subscribe(
       todos => this.todos = todos

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -30,5 +31,24 @@ public class TodoControllerTest {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id").value(4))
                 .andExpect(jsonPath("$[1].id").value(5));
+    }
+
+    @Test
+    @Sql("listAllTodos.sql")
+    public void TestUpdatingTodoStateWhenAllIsOk() throws Exception {
+       this.mockMvc.perform(patch("/todos/state/4"))
+               .andExpect(status().isOk())
+               .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+               .andExpect(jsonPath("$.id").value(4))
+               .andExpect(jsonPath("$.state").value(true));
+    }
+
+    @Test
+    @Sql("listAllTodos.sql")
+    public void TestUpdatingTodoStateWhenTodoDoesNotExist() throws Exception {
+        this.mockMvc.perform(patch("/todos/state/1"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message").value("Todo not found please give a valid id"));
     }
 }
