@@ -1,12 +1,19 @@
 .card-wrapper{
   width: 70vw;
   min-width: 265px;
+  mat-card-content{
+    form{
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
 }
 .card-header-wrapper{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  margin-bottom: 15px;
   h2{
     margin: 0;
   }
@@ -21,3 +28,4 @@
     width: 70vw;
   }
 }
+

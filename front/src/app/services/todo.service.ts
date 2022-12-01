@@ -25,4 +25,8 @@ export class TodoService {
   getOneTodo(id:number): Observable<Todo>{
     return this.http.get<Todo>(this.apiUrl+id)
   }
+
+  createOneTodo(todo:Todo): Observable<Todo>{
+    return this.http.post<Todo>(this.apiUrl, todo)
+  }
 }

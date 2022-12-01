@@ -3,6 +3,7 @@ package dkdev.todotest.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Getter
@@ -17,10 +18,12 @@ public class Todo {
     private Long id;
 
     @Column(name = "title", nullable = false)
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
     @Column(name = "description")
     private String description;
+
     @Column(name = "state", nullable = false)
     private Boolean state;
 

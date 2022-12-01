@@ -5,9 +5,10 @@ import dkdev.todotest.entity.Todo;
 import dkdev.todotest.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TodoService {
@@ -29,5 +30,11 @@ public class TodoService {
 
     public Todo getOneTodoById(Long id) throws DAOException {
         return todoRepository.findById(id).orElseThrow(() -> new DAOException("Todo not found please give a valid id"));
+    }
+
+    public Todo createNewTodo(Todo todo){
+            todo.setState(false);
+            todo.setCreatedAt(new Date());
+            return todoRepository.save(todo);
     }
 }

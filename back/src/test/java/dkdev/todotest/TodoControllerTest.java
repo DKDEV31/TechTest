@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -59,5 +60,27 @@ public class TodoControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(5))
                 .andExpect(jsonPath("$.description").value("Utiliser le nouvel aspirateur"));
+    }
+
+    @Test
+    public void TestCreatingTodoWhenAllIsOk() throws Exception {
+        this.mockMvc.perform(post("/todos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\": \"Todo 1\", \"description\": \"Todo 1 description\"}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.description").value("Todo 1 description"));
+    }
+
+    @Test
+    public void TestCreatingTodoWithNoTitle() throws Exception {
+        this.mockMvc.perform(post("/todos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"description\": \"Todo 1 description\"}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.constraintViolations.title").value("Title is mandatory"));
     }
 }
