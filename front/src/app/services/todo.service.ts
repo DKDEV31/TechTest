@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class TodoService {
 
-  private apiUrl = "http://localhost:8080/api/todos"
+  private apiUrl = "http://localhost:8080/api/todos/"
 
   constructor(
     private http:HttpClient
@@ -20,5 +20,9 @@ export class TodoService {
 
   updateTodoState(id:number): Observable<Todo>{
     return this.http.patch<Todo>(this.apiUrl+"/state/"+id, null)
+  }
+
+  getOneTodo(id:number): Observable<Todo>{
+    return this.http.get<Todo>(this.apiUrl+id)
   }
 }

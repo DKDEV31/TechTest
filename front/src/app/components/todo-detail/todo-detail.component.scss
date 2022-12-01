@@ -1,0 +1,28 @@
+.card-wrapper{
+  width: 70vw;
+  min-width: 265px;
+  mat-card-content{
+    p{
+      text-align: center;
+    }
+  }
+}
+.card-header-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  h2{
+    margin: 0;
+  }
+}
+@media screen and (max-width:599px) {
+  .card-wrapper{
+    width: 90vw;
+  }
+}
+@media screen and (max-width:650px) {
+  .card-wrapper{
+    width: 70vw;
+  }
+}

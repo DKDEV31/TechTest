@@ -1,6 +1,6 @@
 <div class="todo-container">
   <mat-checkbox [checked]="todo.state" (change)="onChange()"></mat-checkbox>
-  <div [routerLink]="['/todo', todo.id]" class="content-wrapper">
+  <div [routerLink]="['/todo', todo.id]" class="content-wrapper" >
     <div>
       <h3 [ngClass]="{'strike': todo.state === true}">{{todo.title}}</h3>
       <p [ngClass]="{'strike': todo.state === true}">{{todo.description}}</p>

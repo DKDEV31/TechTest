@@ -16,12 +16,14 @@ import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {TodoService} from "./services/todo.service";
 import {HttpClientModule} from "@angular/common/http";
+import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodolistComponent,
     TodoComponent,
+    TodoDetailComponent,
   ],
   imports: [
     BrowserModule,
