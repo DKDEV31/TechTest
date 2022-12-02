@@ -1,0 +1,15 @@
+FROM maven:3.8.6-openjdk-18
+WORKDIR /build
+COPY . /build
+RUN mvn clean package
+RUN mkdir -p /app
+RUN cp ./target/*.jar /app
+WORKDIR /app
+ENV SPRING_PROFILE=""
+ENV DB_URL=""
+ENV DB_USER=""
+ENV DB_PASSWORD=""
+ENV LOG_LEVEL="INFO"
+EXPOSE 8080
+CMD ["java", "-jar", "TodoTest-1.0.0.jar"]
+

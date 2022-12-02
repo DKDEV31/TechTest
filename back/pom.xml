@@ -10,7 +10,7 @@
     </parent>
     <groupId>dkdev</groupId>
     <artifactId>TodoTest</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>TodoTest</name>
     <description>TodoTest</description>
     <properties>

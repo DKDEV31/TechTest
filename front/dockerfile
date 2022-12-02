@@ -1,0 +1,11 @@
+#Build app
+FROM node:latest
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build --prod
+#Copy build files into nginx server
+FROM nginx:alpine
+COPY nginx/default.conf /etc/nginx/conf.d/
+COPY --from=0 /app/dist/todo /usr/share/nginx/html
+
